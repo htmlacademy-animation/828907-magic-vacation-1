@@ -1,6 +1,36 @@
-// МЕНЮ
+
+// ШАПКА ---
+.page-header {
+  opacity: 0;
+  transition: all 0.1s $custom-timing-function;
+
+  .page-loaded & {
+    opacity: 1;
+  }
+}
+
+// Логотип
+.page-header__logo {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all $transition-min-time $custom-timing-function 0.1s;
+
+  .page-loaded & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 // Пункы меню
+.page-header__menu {
+  opacity: 0;
+  transition: all $transition-min-time ease 0.3s;
+
+  .page-loaded & {
+    opacity: 1;
+  }
+}
+
 .page-header__menu a {
   transition: color $transition-time ease;
 
@@ -16,12 +46,27 @@
       left: 0;
     }
   }
+
+  .menu-loaded &.active {
+    &::after {
+      width: 100%;
+      right: auto;
+      left: 0;
+    }
+  }
 }
 
 // Социальные иконки
 .social-block__toggler {
   &::before {
+    transform: translate(-50%, -50%) scale(0);
     transition: all $transition-time ease;
+  }
+
+  .menu-loaded & {
+    &::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 }
 
@@ -40,7 +85,18 @@
   transition: color $transition-time ease;
 }
 
-// ГЛАВНАЯ СТРАНИЦА
+// ПОДВАЛ ---
+
+.screen__footer {
+  transform: translateY(100%);
+  transition: all $transition-min-time $custom-timing-function;
+
+  .page-loaded & {
+    transform: translateY(0);
+  }
+}
+
+// ГЛАВНАЯ СТРАНИЦА ---
 
 .intro__message {
   transition: all $transition-time ease;
@@ -51,7 +107,7 @@
   }
 }
 
-// СТРАНИЦА ИСТОРИИ
+// СТРАНИЦА ИСТОРИИ ---
 
 .slider__item-text {
   opacity: 0;
@@ -73,53 +129,14 @@
   }
 }
 
-// СТРАНИЦА ИГРЫ
+// СТРАНИЦА ИГРЫ ---
 
 .form__field {
-  width: 0;
-  padding: 0;
-  margin-left: calc(100% - 21rem);
+  clip-path: inset(0 0 0 100%);
   transition: all $transition-min-time ease;
 
-  @media (min-width: $stop-scaling) {
-    margin-left: calc(100% - 210px);
-  }
-
-  @media (orientation: portrait) {
-    margin-left: calc(100% - 5rem);
-  }
-
-  @media (max-width: $tablet) and (orientation: landscape) {
-    margin-left: calc(100% - 9rem);
-  }
-
-  @media (max-width: $mobile) and (orientation: landscape) {
-    margin-left: calc(100% - 5rem);
-  }
-
   .active & {
-    width: calc(100% - 21rem);
-    margin-left: 0;
-    padding: 0 5.6rem;
-
-    @media (min-width: $stop-scaling) {
-      width: calc(100% - 210px);
-      padding: 0 56px;
-    }
-
-    @media (orientation: portrait) {
-      width: calc(100% - 5rem);
-      padding: 0 2.5rem;
-    }
-
-    @media (max-width: $tablet) and (orientation: landscape) {
-      width: calc(100% - 9rem);
-    }
-
-    @media (max-width: $mobile) and (orientation: landscape) {
-      width: calc(100% - 5rem);
-      padding: 0 2.5rem;
-    }
+    clip-path: inset(0 0 0 0);
   }
 }
 
