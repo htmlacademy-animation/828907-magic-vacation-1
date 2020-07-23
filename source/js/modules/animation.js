@@ -7,3 +7,11 @@ export default () => {
     element.style.transitionDelay = delay + `s`;
   });
 };
+
+// Появление шапки и футера
+const body = document.querySelector(`body`);
+
+window.addEventListener(`load`, () => {
+  body.classList.add(`page-loaded`);
+  setTimeout(() => body.classList.add(`menu-loaded`), 500);
+});
