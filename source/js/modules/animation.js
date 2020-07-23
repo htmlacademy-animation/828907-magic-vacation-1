@@ -13,5 +13,7 @@ const body = document.querySelector(`body`);
 
 window.addEventListener(`load`, () => {
   body.classList.add(`page-loaded`);
+
+  // Смена состояния псевдоэлементов меню начинается после появления меню
   setTimeout(() => body.classList.add(`menu-loaded`), 500);
 });

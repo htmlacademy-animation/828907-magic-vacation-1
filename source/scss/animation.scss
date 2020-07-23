@@ -129,6 +129,45 @@
   }
 }
 
+// СТРАНИЦА ПРИЗОВ ---
+
+.filler {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background-color: #5f458c;
+  transition: height $transition-time ease;
+}
+
+.screen--prizes {
+  background-color: transparent;
+
+  & .screen__wrapper {
+    opacity: 0;
+    transition: opacity 0.1s ease 0.5s;
+  }
+
+  & .screen__footer {
+    transform: translateY(100%);
+    transition: transform 0.1s ease 0.5s;
+  }
+
+  &.active {
+    & .screen__wrapper {
+      opacity: 1;
+    }
+
+    & .screen__footer {
+      transform: translateY(0);
+    }
+
+    & .filler {
+      height: 100%;
+    }
+  }
+}
+
 // СТРАНИЦА ИГРЫ ---
 
 .form__field {
