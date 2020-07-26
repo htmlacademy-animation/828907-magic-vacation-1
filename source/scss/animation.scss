@@ -168,6 +168,104 @@
   }
 }
 
+// СТРАНИЦА ПРАВИЛ ---
+
+@keyframes show-rules-lead {
+  0% {
+    transform: translateY(15px);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes show-rules-item-number {
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes show-rules-item-text {
+  0% {
+    transform: translateX(20px);
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes show-rules-button {
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes show-rules-button-text {
+  100% {
+    color: #5f458c;
+  }
+}
+
+.rules__lead {
+  opacity: 0;
+
+  .active & {
+    animation-name: show-rules-lead;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.3s;
+  }
+}
+
+.rules__item {
+  // Номер списка правил
+  &::before {
+    transform: scale(0);
+  }
+
+  .active &::before {
+    animation-name: show-rules-item-number;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  @for $i from 1 through 4 {
+    .active &:nth-child(#{$i})::before {
+      animation-delay: 0.3s + 0.3s * $i;
+    }
+  }
+
+  // Текст списка правил
+  p {
+    opacity: 0;
+  }
+
+  .active & p {
+    animation-name: show-rules-item-text;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  @for $i from 1 through 4 {
+    .active &:nth-child(#{$i}) p {
+      animation-delay: 0.3s + 0.3s * $i;
+    }
+  }
+}
+
+.rules__link {
+  clip-path: inset(0 0 0 100%);
+  color: transparent;
+
+  .active &--visible {
+    animation: show-rules-button 0.3s forwards, show-rules-button-text 0.3s 0.3s forwards;
+  }
+}
+
 // СТРАНИЦА ИГРЫ ---
 
 .form__field {
