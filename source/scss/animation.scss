@@ -12,7 +12,7 @@
 // Логотип
 .page-header__logo {
   opacity: 0;
-  transform: translateX(-20px);
+  transform: translateX(-1.5rem);
   transition: all $transition-min-time $custom-timing-function 0.1s;
 
   .page-loaded & {
@@ -72,7 +72,7 @@
 
 .social-block__list li {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(0.75rem);
   transition: all $transition-min-time ease;
 
   .social-block:hover & {
@@ -103,7 +103,7 @@
 
   .active & {
     opacity: 1;
-    transform: translateY(-20px);
+    transform: translateY(-1.5rem);
   }
 }
 
@@ -111,7 +111,7 @@
 
 .slider__item-text {
   opacity: 0;
-  transform: translate(30px);
+  transform: translate(2.25rem);
   transition: all $transition-min-time ease;
 
   .active .swiper-slide-active &,
@@ -165,6 +165,104 @@
     & .filler {
       height: 100%;
     }
+  }
+}
+
+// СТРАНИЦА ПРАВИЛ ---
+
+@keyframes show-rules-lead {
+  0% {
+    transform: translateY(0.89rem);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes show-rules-item-number {
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes show-rules-item-text {
+  0% {
+    transform: translateX(1.5rem);
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes show-rules-button {
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes show-rules-button-text {
+  100% {
+    color: #5f458c;
+  }
+}
+
+.rules__lead {
+  opacity: 0;
+
+  .active & {
+    animation-name: show-rules-lead;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.3s;
+  }
+}
+
+.rules__item {
+  // Номер списка правил
+  &::before {
+    transform: scale(0);
+  }
+
+  .active &::before {
+    animation-name: show-rules-item-number;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  @for $i from 1 through 4 {
+    .active &:nth-child(#{$i})::before {
+      animation-delay: 0.3s + 0.3s * $i;
+    }
+  }
+
+  // Текст списка правил
+  p {
+    opacity: 0;
+  }
+
+  .active & p {
+    animation-name: show-rules-item-text;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  @for $i from 1 through 4 {
+    .active &:nth-child(#{$i}) p {
+      animation-delay: 0.3s + 0.3s * $i;
+    }
+  }
+}
+
+.rules__link {
+  clip-path: inset(0 0 0 100%);
+  color: transparent;
+
+  &--visible {
+    animation: show-rules-button 0.3s forwards, show-rules-button-text 0.3s 0.3s forwards;
   }
 }
 
